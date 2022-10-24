@@ -38,28 +38,62 @@
     ```
 
 3.  Terakhir, Push pembaharuan kode dengan perintah:
-    (Push pembaruan kode bisa dilakukan di Branch manapun yang tersedia, dalam hal ini di Branch "main")
+    (Push pembaruan kode bisa dilakukan di Branch manapun yang tersedia)
+
+    Jika ingin Push pembaharuan kode di Branch "main", bisa mengetikkan perintah:
 
     ```
     git push origin main
     ```
 
+    Jika ingin Push pembaharuan kode di Branch "back-end-ml", bisa mengetikkan perintah:
+
+    ```
+    git push origin back-end-ml
+    ```
+
+    Jika ingin Push pembaharuan kode di Branch "front-end", bisa mengetikkan perintah:
+
+    ```
+    git push origin front-end
+    ```
+
 4.  Jika ingin melakukan Push di Branch selain "main", bisa mengetikkan perintah:
-    (Ingin pindah ke Branch "back-end-ml")
+
+    Jika ingin pindah ke Branch "back-end-ml", bisa mengetikkan perintah:
 
     ```
     git checkout -b "back-end-ml"
     ```
 
-    Dan jika ingin kembali lagi ke Branch "main, bisa mengetikkan perintah:
+    Dan jika ingin kembali lagi ke Branch "main", bisa mengetikkan perintah:
 
     ```
     git checkout "main"
     ```
 
+    Dan jika ingin kembali lagi ke Branch "back-end-ml", cukup mengetikkan perintah:
+
+    ```
+    git checkout "back-end-ml"
+    ```
+
 5.  Jika ingin melakukan Update dari seluruh kode yang dilakukan Contributor lain dalam suatu Branch, bisa mengetikkan perintah:
-    (Ingin Update seluruh kode dari Branch "main")
+
+    Jika Update seluruh kode dari Branch "main", bisa mengetikkan perintah:
 
     ```
     git pull origin main
+    ```
+
+    Jika Update seluruh kode dari Branch "back-end-ml", bisa mengetikkan perintah:
+
+    ```
+    git pull origin back-end-ml
+    ```
+
+    Jika Update seluruh kode dari Branch "front-end", bisa mengetikkan perintah:
+
+    ```
+    git pull origin front-end
     ```
