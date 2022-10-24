@@ -37,8 +37,7 @@
     git commit -m "edit petunjuk inisialisasi"
     ```
 
-3.  Terakhir, Push pembaharuan kode dengan perintah:
-    (Push pembaruan kode bisa dilakukan di Branch manapun yang tersedia)
+3.  Terakhir, Push pembaruan kode bisa dilakukan di Branch manapun yang tersedia.
 
     Jika ingin Push pembaharuan kode di Branch "main", bisa mengetikkan perintah:
 
@@ -58,7 +57,7 @@
     git push origin front-end
     ```
 
-4.  Jika ingin melakukan Push di Branch selain "main", bisa mengetikkan perintah:
+4.  Jika ingin melakukan Push di Branch selain "main", perlu melakukan perpindahan Branch terlebih dahulu ke Branch yang dipilih.
 
     Jika ingin pindah ke Branch "back-end-ml", bisa mengetikkan perintah:
 
@@ -78,7 +77,7 @@
     git checkout back-end-ml
     ```
 
-5.  Jika ingin melakukan Update dari seluruh kode yang dilakukan Contributor lain dalam suatu Branch, bisa mengetikkan perintah:
+5.  Jika ingin melakukan Update dari seluruh kode yang dilakukan Contributor lain dalam suatu Branch, perlu melakukan Pull terlebih dahulu di Branch yang dipilih.
 
     Jika Update seluruh kode dari Branch "main", bisa mengetikkan perintah:
 
