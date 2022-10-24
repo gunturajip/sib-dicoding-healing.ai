@@ -22,7 +22,7 @@
     code .
     ```
 
-## Petunjuk Upload Pembaharuan Kode
+## Petunjuk Pembaharuan Kode
 
 1.  Pada folder proyek, buka Git Bash dan ketikkan perintah:
 
@@ -45,14 +45,21 @@
     ```
 
 4.  Jika ingin melakukan Push di Branch selain "main", bisa mengetikkan perintah:
-    (Ingin pindah ke Branch "front-end")
+    (Ingin pindah ke Branch "back-end-ml")
 
     ```
-    git checkout -b "front-end"
+    git checkout -b "back-end-ml"
     ```
 
     Dan jika ingin kembali lagi ke Branch "main, bisa mengetikkan perintah:
 
     ```
     git checkout "main"
+    ```
+
+5.  Jika ingin melakukan Update dari seluruh kode yang dilakukan Contributor lain dalam suatu Branch, bisa mengetikkan perintah:
+    (Ingin Update seluruh kode dari Branch "main")
+
+    ```
+    git pull origin main
     ```
