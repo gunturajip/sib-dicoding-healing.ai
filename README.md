@@ -63,19 +63,19 @@
     Jika ingin pindah ke Branch "back-end-ml", bisa mengetikkan perintah:
 
     ```
-    git checkout -b "back-end-ml"
+    git checkout -b back-end-ml
     ```
 
     Dan jika ingin kembali lagi ke Branch "main", bisa mengetikkan perintah:
 
     ```
-    git checkout "main"
+    git checkout main
     ```
 
     Dan jika ingin kembali lagi ke Branch "back-end-ml", cukup mengetikkan perintah:
 
     ```
-    git checkout "back-end-ml"
+    git checkout back-end-ml
     ```
 
 5.  Jika ingin melakukan Update dari seluruh kode yang dilakukan Contributor lain dalam suatu Branch, bisa mengetikkan perintah:
