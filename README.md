@@ -1,3 +1,3 @@
 # Healing.ai
 
-## Kode Back-End + Machine Learning (Tensorflow + Flask)
+## Kode Back-End + Machine Learning (Flask + Tensorflow)
