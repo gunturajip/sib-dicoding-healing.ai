@@ -2,6 +2,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 import pandas as pd
+import sklearn
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -9,7 +10,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 # inisiasi object flask
 app = Flask(__name__)
 taman = pd.read_csv("taman.csv")
-museum = pd.read_csv("museum_csv")
+museum = pd.read_csv("museum.csv")
 
 # inisiasi object flask_cors
 CORS(app)
@@ -25,11 +26,18 @@ def get():
 
 @app.route("/api", methods=["POST"])
 def post():
+    global identitas
+    identitas = {}
     keyword = request.form["keyword"]
     result = rekomendasi_taman(keyword)
-    identitas["keyword"] = result
-    response = {"msg": "data berhasil dimasukkan"}
-    return response
+    if type(result) == str:
+        identitas[0] = result
+    else:
+        for index in range(len(result)):
+            identitas[int(result.loc[index, "index"])] = {'nama': result.loc[index, "nama"], 'kategori': result.loc[index, "kategori"], 'rating': int(result.loc[index, "rating"]),
+                                                          'kecamatan': result.loc[index, "kecamatan"], 'kota': result.loc[index, "kota"], 'provinsi': result.loc[index, "provinsi"], 'alamat': result.loc[index, "alamat"], 'link': result.loc[index, "link"]}
+
+    return identitas
 
 
 def rekomendasi_taman(nama):
@@ -56,16 +64,18 @@ def rekomendasi_taman(nama):
     k = 20
 
     # Melakukan matching data pertama yang paling mirip dengan parameter nama
+    nama_terbaik = [0, ""]
     for i in taman["nama"]:
         count = 0
         for j in nama.lower().split():
             if j in i.lower().split():
                 count += 1
-        if count == len(nama.split()):
-            nama = i
-            break
-    else:
+        if count >= 1 and nama_terbaik[0] < count:
+            nama_terbaik[0] = count
+            nama_terbaik[1] = i
+    if nama_terbaik[1] == "":
         return "Tidak ada rekomendasi"
+    nama = nama_terbaik[1]
 
     # Mengambil data dengan menggunakan argpartition untuk melakukan partisi secara tidak langsung sepanjang sumbu yang diberikan
     # Dataframe diubah menjadi numpy
@@ -79,7 +89,10 @@ def rekomendasi_taman(nama):
     # Drop nama agar nama data yang dicari tidak muncul dalam daftar rekomendasi
     closest = closest.drop(nama, errors='ignore')
 
-    return pd.DataFrame(closest).merge(items).to_json()
+    # Menambahkan data sesuai keyword pencarian sebagai data pertama
+    matched = taman[taman["nama"] == nama]
+
+    return pd.concat([matched, pd.DataFrame(closest).merge(items).loc[:]]).reset_index(drop=True).reset_index()
 
 
 if __name__ == "__main__":
