@@ -8,8 +8,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # inisiasi object flask
 app = Flask(__name__)
-taman = pd.read_csv("taman.csv")
-museum = pd.read_csv("museum.csv")
+taman = pd.read_csv("mysite/taman.csv")
+museum = pd.read_csv("mysite/museum.csv")
 
 def crossdomain(
     origin=None,
@@ -70,7 +70,7 @@ def crossdomain(
     return decorator
 
 # inisiasi variabel kosong bertipe dictionary (= json)
-identitas = {}
+identitas = {"results": []}
 
 @app.route('/api', methods=['GET','OPTIONS'])
 @crossdomain(origin="*")
@@ -81,12 +81,12 @@ def get():
 @crossdomain(origin="*")
 def post():
     global identitas
-    identitas = {}
+    identitas = {"results": []}
     keyword = request.form["keyword"]
     hasil_taman = rekomendasi_taman(keyword)
     hasil_museum = rekomendasi_museum(keyword)
     if type(hasil_taman) == str and type(hasil_museum) == str:
-        identitas[0] = hasil_taman
+        identitas["results"] += [{0: hasil_taman}]
     else:
         if type(hasil_taman) == str:
             loop_hasi_rekomendasi(hasil_museum, 0)
@@ -211,8 +211,8 @@ def rekomendasi_museum(nama):
 
 def loop_hasi_rekomendasi(data, start_index):
     for index in range(len(data)):
-        identitas[int(data.loc[index, "index"])+start_index+1] = {'nama': data.loc[index, "nama"], 'kategori': data.loc[index, "kategori"], 'rating': int(data.loc[index, "rating"]),
-                                                                  'kecamatan': data.loc[index, "kecamatan"], 'kota': data.loc[index, "kota"], 'provinsi': data.loc[index, "provinsi"], 'alamat': data.loc[index, "alamat"], 'link': data.loc[index, "link"]}
+        identitas["results"] += [{'nama': data.loc[index, "nama"], 'kategori': data.loc[index, "kategori"], 'rating': int(data.loc[index, "rating"]),
+                                                                  'kecamatan': data.loc[index, "kecamatan"], 'kota': data.loc[index, "kota"], 'provinsi': data.loc[index, "provinsi"], 'alamat': data.loc[index, "alamat"], 'link': data.loc[index, "link"]}]
 
 
 if __name__ == "__main__":
