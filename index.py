@@ -1,7 +1,7 @@
 # import library
 from flask import Flask, request
 import pandas as pd
-from flask_cors import CORS
+# from flask_cors import CORS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -12,7 +12,7 @@ taman = pd.read_csv("taman.csv")
 museum = pd.read_csv("museum.csv")
 
 # inisiasi object flask_cors
-CORS(app)
+# CORS(app)
 
 # inisiasi variabel kosong bertipe dictionary (= json)
 identitas = {}
